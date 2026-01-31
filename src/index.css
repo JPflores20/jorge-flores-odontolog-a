@@ -10,8 +10,8 @@
 
 @layer base {
   :root {
-    /* Dark Luxury Theme - Always dark */
-    --background: 0 0% 7%;
+    /* Mantengo tus variables originales para los componentes (tarjetas, inputs, etc) */
+    --background: 0 0% 7%; 
     --foreground: 0 0% 100%;
 
     --card: 0 0% 10%;
@@ -20,7 +20,7 @@
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 100%;
 
-    /* Olive Green Accent */
+    /* Olive Green Accent - Mantenido para textos y detalles */
     --primary: 79 56% 35%;
     --primary-foreground: 0 0% 100%;
 
@@ -98,7 +98,11 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    /* Aquí aplicamos el degradado solicitado */
+    @apply text-foreground antialiased;
+    background: linear-gradient(to bottom, #000000 0%, #01C877 100%);
+    background-attachment: fixed; /* El fondo se queda fijo al hacer scroll */
+    min-height: 100vh;
     font-family: 'Inter', sans-serif;
   }
 
