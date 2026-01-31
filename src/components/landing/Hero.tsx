@@ -3,6 +3,13 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 const Hero = () => {
+  // Mensaje predefinido para WhatsApp
+  const whatsappNumber = "5214494279362"; // Usando el formato completo con '1' para celular en México
+  const whatsappMessage = encodeURIComponent(
+    "Hola Jorge, buen día. Me interesaría recibir más información sobre tus tratamientos y agendar una cita."
+  );
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-transparent px-4 sm:px-6 lg:px-8 pt-20 pb-16">
       
@@ -40,11 +47,11 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            {/* Botón Principal con el nuevo acento vibrante */}
+            {/* Botón Principal con WhatsApp y Mensaje Personalizado */}
             <Button 
               size="lg" 
               className="bg-accent hover:bg-accent/90 text-black font-semibold rounded-full px-8 h-14 text-base shadow-[0_0_30px_rgba(74,222,128,0.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(74,222,128,0.6)]"
-              onClick={() => window.open("https://wa.me/524494279362", "_blank")}
+              onClick={() => window.open(whatsappLink, "_blank")}
             >
               <Calendar className="mr-2 h-5 w-5" />
               Agendar Cita
@@ -76,11 +83,10 @@ const Hero = () => {
           {/* Contenedor de la imagen */}
           <div className="relative rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-2xl max-w-md w-full aspect-[3/4] glass-card p-2">
             <img 
-              src="/Jorge.jpeg" // La ruta directa a la imagen en la carpeta public
+              src="/Jorge.jpeg"
               alt="E.O. Jorge Flores" 
               className="w-full h-full object-cover rounded-[2rem] shadow-inner"
             />
-            {/* Brillo sutil sobre la imagen */}
             <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-t from-black/30 via-transparent to-white/5 pointer-events-none"></div>
           </div>
         </motion.div>

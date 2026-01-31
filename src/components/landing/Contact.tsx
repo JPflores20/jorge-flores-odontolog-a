@@ -9,12 +9,13 @@ const Contact = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const whatsappNumber = "5214494279362";
+  // Mensaje actualizado
   const whatsappMessage = encodeURIComponent(
-    "Hola, me gustaría obtener más información sobre los tratamientos disponibles."
+    "Hola Jorge, buen día. Me interesaría recibir más información sobre tus tratamientos y agendar una cita."
   );
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   const instagramLink = "https://instagram.com/jorgeflores__";
-  // Enlace para el botón de "Cómo llegar" (Puse una búsqueda genérica, puedes ajustarlo a la URL exacta)
+  // Enlace para el botón de "Cómo llegar"
   const mapsLink = "https://www.google.com/maps/search/?api=1&query=Global+University+Aguascalientes"; 
 
   return (
@@ -127,7 +128,7 @@ const Contact = () => {
             </motion.div>
           </div>
 
-          {/* Location & Map Section - Replaces the previous simple text */}
+          {/* Location & Map Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
