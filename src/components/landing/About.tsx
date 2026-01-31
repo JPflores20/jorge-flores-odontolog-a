@@ -8,75 +8,65 @@ const About = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    // CAMBIO: bg-transparent explícito
-    <section id="about" className="py-24 md:py-32 relative bg-transparent" ref={ref}>
-      
-      {/* Fondo decorativo muy sutil para no tapar el degradado global */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/5 to-transparent" />
-      </div>
-
+    <section id="about" className="py-24 relative bg-transparent" ref={ref}>
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
+          {/* Encabezado */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-14"
+          >
+            <span className="text-accent font-semibold tracking-[0.2em] uppercase text-sm block mb-4">
+              Mi Perfil
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif">
+              Sobre Mí
+            </h2>
+          </motion.div>
+
+          {/* Contenido de Texto */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-16"
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            className="prose prose-lg prose-invert mx-auto text-gray-300 leading-relaxed text-center md:text-left font-light"
           >
-            <p className="text-[#01C877] font-medium tracking-[0.3em] uppercase text-sm mb-4">
-              Conóceme
+            <p>
+              Mi nombre es <strong className="text-white font-medium">Jorge Flores</strong>. 
+              Soy estudiante del 4to semestre de la carrera de Odontología en 
+              <strong className="text-white font-medium"> Global University</strong>.
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white">Sobre Mí</h2>
+            <p>
+              Mi objetivo actual es ampliar mi experiencia clínica a través de la atención 
+              a pacientes que requieran tratamientos preventivos y restaurativos, como 
+              retiro de caries o manejo de enfermedades periodontales.
+            </p>
+            <p>
+              Su apoyo acudiendo a consulta es fundamental para mi formación profesional. 
+              A cambio, usted recibe una atención dedicada, supervisada y de alta calidad 
+              a costos muy accesibles.
+            </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="relative"
-          >
-            {/* Linea decorativa */}
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#01C877]/50 to-transparent hidden md:block" />
-            
-            <div className="md:pl-12">
-              <p className="text-lg md:text-xl leading-relaxed text-gray-300 mb-8">
-                Mi nombre es <span className="text-white font-medium">Jorge Flores</span>. 
-                Actualmente curso el 4to semestre de la carrera de Odontología en 
-                <span className="text-white font-medium"> Global University</span>. 
-                Me encuentro en búsqueda de pacientes que requieran tratamiento para 
-                retiro de caries o manejo de alguna enfermedad periodontal.
-              </p>
-              
-              <p className="text-lg md:text-xl leading-relaxed text-gray-300 mb-12">
-                Su apoyo acudiendo a consulta me ayudaría considerablemente a cumplir 
-                mis horas clínicas, mientras usted recibe atención odontológica de calidad 
-                a precios accesibles.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Quote Block */}
+          {/* Bloque de Cita con Estilo Cristal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             className="relative mt-16"
           >
-            {/* CAMBIO: bg-white/5 para transparencia con blur */}
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 md:p-12 relative rounded-sm">
-              {/* Esquinas decorativas */}
-              <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#01C877]" />
-              <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#01C877]" />
+            {/* Usamos la clase glass-card aquí */}
+            <div className="glass-card p-10 md:p-14 relative rounded-3xl text-center">
+              <Quote className="w-12 h-12 text-accent/40 mx-auto mb-6 rotate-180" />
               
-              <Quote className="w-10 h-10 text-[#01C877]/50 mb-4" />
-              
-              <blockquote className="text-2xl md:text-3xl font-serif italic text-center text-white">
+              <blockquote className="text-2xl md:text-4xl font-serif italic text-white leading-snug">
                 "Una sonrisa limpia e impecable es mi principal objetivo."
               </blockquote>
               
-              <div className="flex justify-center mt-6">
-                <div className="w-16 h-0.5 bg-[#01C877]" />
+              <div className="flex justify-center mt-8">
+                <div className="w-24 h-1 bg-accent rounded-full shadow-[0_0_15px_rgba(74,222,128,0.5)]" />
               </div>
             </div>
           </motion.div>

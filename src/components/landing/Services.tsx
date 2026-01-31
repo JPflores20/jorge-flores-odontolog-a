@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles, Droplets, Shield, Heart } from "lucide-react";
+import { Sparkles, Droplets, Shield, Heart, ArrowUpRight } from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
@@ -14,31 +14,38 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ title, description, price, icon, delay, isInView }: ServiceCardProps) => (
   <motion.div
-    initial={{ opacity: 0, y: 40 }}
+    initial={{ opacity: 0, y: 30 }}
     animate={isInView ? { opacity: 1, y: 0 } : {}}
-    transition={{ duration: 0.6, delay, ease: "easeOut" }}
-    className="group relative"
+    transition={{ duration: 0.5, delay, ease: "easeOut" }}
+    className="group h-full"
   >
-    {/* Fondo semitransparente oscuro para contraste */}
-    <div className="relative bg-black/40 backdrop-blur-md border border-white/10 p-8 h-full rounded-lg transition-all duration-500 hover:border-[#01C877] hover:bg-black/60 hover:-translate-y-2">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#01C877]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg" />
+    {/* Tarjeta con estilo Cristal Premium y nuevo acento */}
+    <div className="glass-card relative p-8 h-full rounded-2xl transition-all duration-500 group-hover:border-accent/50 group-hover:-translate-y-2 overflow-hidden">
       
-      <div className="relative z-10">
-        <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center mb-6 group-hover:border-[#01C877] group-hover:scale-110 transition-all duration-300 bg-black/50">
-          <div className="text-[#01C877]">{icon}</div>
+      {/* Efecto de luz al hacer hover */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Encabezado: Icono y Título */}
+        <div className="flex items-start justify-between mb-6">
+          <div className="w-14 h-14 rounded-xl border border-white/10 flex items-center justify-center bg-white/5 text-accent group-hover:bg-accent group-hover:text-black group-hover:border-transparent transition-all duration-300 shadow-sm">
+            {icon}
+          </div>
+          <ArrowUpRight className="w-5 h-5 text-gray-500 group-hover:text-accent transition-colors" />
         </div>
         
-        <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#01C877] transition-colors">
+        <h3 className="text-xl font-bold mb-4 text-white group-hover:text-accent transition-colors duration-300 font-serif tracking-wide">
           {title}
         </h3>
         
-        <p className="text-gray-300 text-sm leading-relaxed mb-6 font-light">
+        <p className="text-gray-300 text-sm leading-relaxed mb-8 flex-grow font-light">
           {description}
         </p>
         
-        <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-          <span className="text-xs text-gray-400 uppercase tracking-wider">Inversión</span>
-          <span className="text-2xl font-bold text-[#01C877]">{price}</span>
+        {/* Pie de tarjeta: Precio */}
+        <div className="pt-5 border-t border-white/10 flex items-center justify-between mt-auto">
+          <span className="text-xs text-gray-400 uppercase tracking-widest font-medium">Inversión Desde</span>
+          <span className="text-xl font-bold text-accent">{price}</span>
         </div>
       </div>
     </div>
@@ -49,57 +56,70 @@ const Services = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const services = [
+  const services =  [
     {
       title: "Limpiezas Dentales",
-      description: "Eliminación profunda de sarro y placa bacteriana para una salud gingival óptima.",
+      description: "Eliminación profunda de sarro y placa con ultrasonido para una salud gingival óptima y aliento fresco.",
       price: "$150 MXN",
-      icon: <Sparkles className="w-6 h-6" />,
+      icon: <Sparkles className="w-7 h-7" />,
     },
     {
       title: "Desmanchamientos",
-      description: "Recupera el tono natural de tus dientes eliminando manchas superficiales.",
+      description: "Tratamiento estético para recuperar el brillo natural de tus dientes eliminando manchas superficiales.",
       price: "$200 MXN",
-      icon: <Droplets className="w-6 h-6" />,
+      icon: <Droplets className="w-7 h-7" />,
     },
     {
       title: "Retiro de Caries",
-      description: "Restauración estética y funcional utilizando materiales de alta calidad.",
+      description: "Restauración funcional y estética de dientes dañados utilizando resinas de alta calidad.",
       price: "$250 MXN",
-      icon: <Shield className="w-6 h-6" />,
+      icon: <Shield className="w-7 h-7" />,
     },
     {
-      title: "Salud Periodontal",
-      description: "Diagnóstico y tratamiento para detener el sangrado y la inflamación de encías.",
+      title: "Terapia Periodontal",
+      description: "Diagnóstico y control de enfermedades de las encías para detener el sangrado y la inflamación.",
       price: "$300 MXN",
-      icon: <Heart className="w-6 h-6" />,
+      icon: <Heart className="w-7 h-7" />,
     },
   ];
 
   return (
     <section id="services" className="py-24 relative bg-transparent" ref={ref}>
       <div className="container mx-auto px-6 relative z-10">
+        {/* Encabezado de Sección */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <span className="text-[#01C877] font-semibold tracking-widest uppercase text-sm">
+          <span className="text-accent font-semibold tracking-[0.2em] uppercase text-sm flex items-center justify-center gap-2 mb-4">
+            <span className="w-8 h-px bg-accent/50"></span>
             Mis Servicios
+            <span className="w-8 h-px bg-accent/50"></span>
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-2 mb-4 text-white">
+          <h2 className="text-4xl md:text-5xl font-bold text-white font-serif mb-6">
             Tratamientos Profesionales
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Atención clínica supervisada con los más altos estándares de higiene y calidad.
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+            Atención clínica supervisada por especialistas, utilizando técnicas modernas 
+            bajo los más estrictos estándares de higiene.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} delay={index * 0.1} isInView={isInView} />
           ))}
         </div>
+        
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.6 }}
+          className="text-center text-sm text-gray-500 mt-12 italic"
+        >
+          * Los precios son cuotas de recuperación aproximadas y pueden variar según la evaluación clínica.
+        </motion.p>
       </div>
     </section>
   );

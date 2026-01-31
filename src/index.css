@@ -2,20 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 @layer base {
   :root {
-    /* Mantenemos variables base pero forzamos la transparencia en el fondo principal */
-    --background: 0 0% 0%; /* Negro puro */
+    /* Nuevo Acento Luminoso (Verde Menta Vibrante) para destacar sobre el fondo */
+    --primary-accent: #4ADE80; 
+
+    /* Grises refinados para mejor lectura sobre fondo oscuro */
+    --text-secondary: #9ca3af; /* gray-400 */
+    --text-tertiary: #6b7280;  /* gray-500 */
+
+    /* Variables de Shadcn (Mantenemos la estructura pero ajustamos el primary) */
+    --background: 0 0% 0%;
     --foreground: 0 0% 100%;
     --card: 0 0% 10%;
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 100%;
-    --primary: 156 99% 39%; /* Tu verde #01C877 convertido a HSL aprox */
-    --primary-foreground: 0 0% 100%;
+    /* Usamos el nuevo acento aquí (convertido a HSL aprox para Tailwind) */
+    --primary: 142 71% 45%; 
+    --primary-foreground: 0 0% 0%; /* Texto negro sobre botón brillante */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 156 99% 39%;
+    --ring: 142 71% 45%;
     --radius: 0.5rem;
   }
 }
@@ -24,26 +42,35 @@
   * {
     @apply border-border;
   }
-  
+
   html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
   }
 
   body {
-    /* FORZAMOS EL DEGRADADO CON !important */
-    background: linear-gradient(to bottom, #000000 0%, #01C877 100%) !important;
+    /* Degradado de fondo ligeramente más profundo y elegante */
+    background: linear-gradient(to bottom, #020202 0%, #012e1b 50%, #01C877 100%) !important;
     background-attachment: fixed !important;
-    background-repeat: no-repeat !important;
     background-size: cover !important;
     color: white;
     font-family: 'Inter', sans-serif;
   }
 
-  /* Hacemos transparente cualquier contenedor que intente tapar el fondo */
-  #root, main {
-    background-color: transparent !important;
-    min-height: 100vh;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Clase de utilidad para el nuevo texto de acento */
+  .text-accent {
+    color: var(--primary-accent);
+  }
+
+  /* Clase para el efecto "Cristal Premium" */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.2)];
   }
 }
