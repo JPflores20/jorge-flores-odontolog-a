@@ -6,10 +6,11 @@ import Footer from "@/components/landing/Footer";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background">
+    // IMPORTANTE: bg-transparent permite ver el degradado del CSS
+    <main className="min-h-screen w-full bg-transparent overflow-x-hidden">
       <Hero />
-      <About />
-      <Services />
+      <div id="about"><About /></div>
+      <div id="services"><Services /></div>
       <Contact />
       <Footer />
     </main>

@@ -2,93 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Dark Luxury Design System - Jorge Flores Landing Page
-   All colors MUST be HSL.
-*/
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
 @layer base {
   :root {
-    /* Mantengo tus variables originales para los componentes (tarjetas, inputs, etc) */
-    --background: 0 0% 7%; 
+    /* Mantenemos variables base pero forzamos la transparencia en el fondo principal */
+    --background: 0 0% 0%; /* Negro puro */
     --foreground: 0 0% 100%;
-
     --card: 0 0% 10%;
     --card-foreground: 0 0% 100%;
-
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 100%;
-
-    /* Olive Green Accent - Mantenido para textos y detalles */
-    --primary: 79 56% 35%;
+    --primary: 156 99% 39%; /* Tu verde #01C877 convertido a HSL aprox */
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 79 56% 35%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 79 56% 35%;
-
+    --ring: 156 99% 39%;
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 7%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 79 56% 35%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 79 56% 35%;
-  }
-
-  .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 100%;
-
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
-
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
-
-    --primary: 79 56% 35%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 79 56% 35%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 79 56% 35%;
-
-    --sidebar-background: 0 0% 7%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 79 56% 35%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 79 56% 35%;
   }
 }
 
@@ -96,17 +24,26 @@
   * {
     @apply border-border;
   }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
   body {
-    /* Aquí aplicamos el degradado solicitado */
-    @apply text-foreground antialiased;
-    background: linear-gradient(to bottom, #000000 0%, #01C877 100%);
-    background-attachment: fixed; /* El fondo se queda fijo al hacer scroll */
-    min-height: 100vh;
+    /* FORZAMOS EL DEGRADADO CON !important */
+    background: linear-gradient(to bottom, #000000 0%, #01C877 100%) !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    color: white;
     font-family: 'Inter', sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cormorant Garamond', serif;
+  /* Hacemos transparente cualquier contenedor que intente tapar el fondo */
+  #root, main {
+    background-color: transparent !important;
+    min-height: 100vh;
   }
 }
