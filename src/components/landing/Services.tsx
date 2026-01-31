@@ -6,13 +6,13 @@ import { Sparkles, Droplets, Shield, Heart, ArrowUpRight } from "lucide-react";
 interface ServiceCardProps {
   title: string;
   description: string;
-  price: string;
   icon: React.ReactNode;
   delay: number;
   isInView: boolean;
 }
 
-const ServiceCard = ({ title, description, price, icon, delay, isInView }: ServiceCardProps) => (
+// Se elimina la prop 'price' y la sección visual del precio en la tarjeta
+const ServiceCard = ({ title, description, icon, delay, isInView }: ServiceCardProps) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -20,7 +20,7 @@ const ServiceCard = ({ title, description, price, icon, delay, isInView }: Servi
     className="group h-full"
   >
     {/* Tarjeta con estilo Cristal Premium y nuevo acento */}
-    <div className="glass-card relative p-8 h-full rounded-2xl transition-all duration-500 group-hover:border-accent/50 group-hover:-translate-y-2 overflow-hidden">
+    <div className="glass-card relative p-8 h-full rounded-2xl transition-all duration-500 group-hover:border-accent/50 group-hover:-translate-y-2 overflow-hidden flex flex-col">
       
       {/* Efecto de luz al hacer hover */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
@@ -38,15 +38,11 @@ const ServiceCard = ({ title, description, price, icon, delay, isInView }: Servi
           {title}
         </h3>
         
-        <p className="text-gray-300 text-sm leading-relaxed mb-8 flex-grow font-light">
+        <p className="text-gray-300 text-sm leading-relaxed mb-0 flex-grow font-light">
           {description}
         </p>
         
-        {/* Pie de tarjeta: Precio */}
-        <div className="pt-5 border-t border-white/10 flex items-center justify-between mt-auto">
-          <span className="text-xs text-gray-400 uppercase tracking-widest font-medium">Inversión Desde</span>
-          <span className="text-xl font-bold text-accent">{price}</span>
-        </div>
+        {/* Eliminada la sección de precio que estaba aquí */}
       </div>
     </div>
   </motion.div>
@@ -55,30 +51,26 @@ const ServiceCard = ({ title, description, price, icon, delay, isInView }: Servi
 const Services = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-// pp
+
   const services =  [
     {
       title: "Limpiezas Dentales",
       description: "Eliminación profunda de sarro y placa con ultrasonido para una salud gingival óptima y aliento fresco.",
-      price: "$150 MXN",
       icon: <Sparkles className="w-7 h-7" />,
     },
     {
       title: "Desmanchamientos",
       description: "Tratamiento estético para recuperar el brillo natural de tus dientes eliminando manchas superficiales.",
-      price: "$200 MXN",
       icon: <Droplets className="w-7 h-7" />,
     },
     {
       title: "Retiro de Caries",
       description: "Restauración funcional y estética de dientes dañados utilizando resinas de alta calidad.",
-      price: "$250 MXN",
       icon: <Shield className="w-7 h-7" />,
     },
     {
       title: "Terapia Periodontal",
       description: "Diagnóstico y control de enfermedades de las encías para detener el sangrado y la inflamación.",
-      price: "$300 MXN",
       icon: <Heart className="w-7 h-7" />,
     },
   ];
@@ -112,14 +104,7 @@ const Services = () => {
           ))}
         </div>
         
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.6 }}
-          className="text-center text-sm text-gray-500 mt-12 italic"
-        >
-          * Los precios son cuotas de recuperación aproximadas y pueden variar según la evaluación clínica.
-        </motion.p>
+        {/* Eliminada la nota al pie sobre precios */}
       </div>
     </section>
   );
