@@ -19,35 +19,36 @@ const ServiceCard = ({ title, description, price, icon, delay, isInView }: Servi
     transition={{ duration: 0.6, delay, ease: "easeOut" }}
     className="group relative"
   >
-    <div className="relative bg-card border border-border p-8 h-full transition-all duration-500 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
+    {/* CAMBIO: Se reemplazó 'bg-card' por 'bg-white/5 backdrop-blur-md' para efecto cristal */}
+    <div className="relative bg-white/5 backdrop-blur-md border border-white/10 p-8 h-full transition-all duration-500 hover:border-[#01C877]/50 hover:shadow-[0_0_30px_rgba(1,200,119,0.1)] hover:-translate-y-1">
       {/* Hover gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#01C877]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       {/* Corner accents */}
-      <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-primary/30 group-hover:border-primary transition-colors duration-300" />
-      <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-primary/30 group-hover:border-primary transition-colors duration-300" />
+      <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-white/20 group-hover:border-[#01C877] transition-colors duration-300" />
+      <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-white/20 group-hover:border-[#01C877] transition-colors duration-300" />
       
       <div className="relative z-10">
         {/* Icon */}
-        <div className="w-14 h-14 rounded-none border border-primary/30 flex items-center justify-center mb-6 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300">
-          <div className="text-primary">{icon}</div>
+        <div className="w-14 h-14 rounded-none border border-white/20 flex items-center justify-center mb-6 group-hover:border-[#01C877] group-hover:bg-[#01C877]/10 transition-all duration-300">
+          <div className="text-[#01C877]">{icon}</div>
         </div>
         
         {/* Content */}
-        <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
+        <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-[#01C877] transition-colors duration-300">
           {title}
         </h3>
         
-        <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+        <p className="text-gray-300 text-sm leading-relaxed mb-6">
           {description}
         </p>
         
         {/* Price */}
-        <div className="pt-4 border-t border-border">
-          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
+        <div className="pt-4 border-t border-white/10">
+          <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
             Precio
           </p>
-          <p className="text-2xl font-bold text-primary">
+          <p className="text-2xl font-bold text-[#01C877]">
             {price}
           </p>
         </div>
@@ -88,11 +89,12 @@ const Services = () => {
   ];
 
   return (
-    <section id="servicios" className="py-24 md:py-32 relative" ref={ref}>
-      {/* Background pattern */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-80 h-80 border border-muted/20 rotate-45 opacity-30" />
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 border border-primary/10 rotate-12 opacity-20" />
+    // CAMBIO: bg-transparent explícito
+    <section id="services" className="py-24 md:py-32 relative bg-transparent" ref={ref}>
+      {/* Background patterns sutiles (ajustados para no tapar el degradado) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -left-40 w-80 h-80 border border-white/5 rotate-45 opacity-30" />
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 border border-[#01C877]/20 rotate-12 opacity-20" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -102,11 +104,11 @@ const Services = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <p className="text-primary font-medium tracking-[0.3em] uppercase text-sm mb-4">
+          <p className="text-[#01C877] font-medium tracking-[0.3em] uppercase text-sm mb-4">
             Tratamientos
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Servicios</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Servicios</h2>
+          <p className="text-gray-300 max-w-2xl mx-auto">
             Ofrezco tratamientos odontológicos de calidad a precios accesibles, 
             supervisados por profesionales de Global University.
           </p>
@@ -128,7 +130,7 @@ const Services = () => {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center text-sm text-muted-foreground mt-12"
+          className="text-center text-sm text-gray-400 mt-12"
         >
           * Los precios pueden variar según la complejidad del tratamiento
         </motion.p>
