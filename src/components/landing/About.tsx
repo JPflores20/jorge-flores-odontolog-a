@@ -44,7 +44,7 @@ const About = () => {
           >
             <p>
               Mi nombre es <strong className="text-white font-medium">Jorge Flores</strong>. 
-              Soy estudiante del 4to semestre de la carrera de Odontología en 
+              Soy estudiante del 5to semestre de la carrera de Odontología en 
               <a 
                 href="https://globaluniversity.edu.mx/" 
                 target="_blank" 

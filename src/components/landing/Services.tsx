@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles, Droplets, Shield, Heart, ArrowUpRight } from "lucide-react";
+import { Sparkles, Droplets, Shield, Heart, ArrowUpRight, Activity } from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
@@ -72,6 +72,11 @@ const Services = () => {
       title: "Terapia Periodontal",
       description: "Diagnóstico y control de enfermedades de las encías para detener el sangrado y la inflamación.",
       icon: <Heart className="w-7 h-7" />,
+    },
+    {
+      title: "Extracciones Dentales",
+      description: "Procedimiento seguro para retirar piezas dentales con daño irreversible de forma cuidadosa.",
+      icon: <Activity className="w-7 h-7" />,
     },
   ];
 
